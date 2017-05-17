@@ -1,0 +1,24 @@
+{% extends "sil24VitrineBundle::layout.html.twig" %}
+
+{% block body %}
+{#    <ul>
+        {% for categorie in categories %}
+            <li><a href="{{ path('_articlesParCategorie',{'categorie':categorie.getId()}) }}">{{ categorie.getName() }}</a></li>
+        {% endfor %}
+    </ul>#}
+
+    <div class="col s12 m6">
+        {% for categorie in categories %}
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">{{ categorie.getName() }}</span>
+                    <p>{{ categorie.getDescription() }}</p>
+                </div>
+                <div class="card-action">
+                    <a href="{{ path('_articlesParCategorie',{'categorie':categorie.getId()}) }}">Voir tous les produits</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

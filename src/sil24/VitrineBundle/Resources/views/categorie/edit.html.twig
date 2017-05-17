@@ -1,0 +1,21 @@
+{% extends "sil24VitrineBundle::layout.html.twig" %}
+
+{% block body %}
+    <h1>Modification Categorie</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Modifier" />
+    {{ form_end(edit_form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('categorie_index') }}">Voir tous</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer catégorie">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

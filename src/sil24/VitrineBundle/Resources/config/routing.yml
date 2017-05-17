@@ -1,0 +1,89 @@
+# Security
+login:
+    path: /login
+    defaults: { _controller: sil24VitrineBundle:Security:login }
+
+login_check:
+    path: /login_check
+
+logout:
+    path: /logout
+
+# Routes
+_sil24_vitrine_homepage:
+    path:     /accueil
+    defaults: { _controller: sil24VitrineBundle:Default:index}
+    
+_mentions:
+    path:     /mentions
+    defaults: { _controller: sil24VitrineBundle:Default:mentions}
+        
+_catalogue:
+    path:     /catalogue
+    defaults: { _controller: sil24VitrineBundle:Article:catalogue}
+
+_articlesParCategorie:
+    path:     /articles/categorie/{categorie}
+    defaults: { _controller: sil24VitrineBundle:Article:articlesParCategorie}
+
+_contenuPanier:
+    path:     /panier
+    defaults: { _controller: sil24VitrineBundle:Panier:contenuPanier}
+
+_ajoutArticle:
+    path:     /ajoutArticle/{idArticle}/{quantite}
+    defaults: { _controller: sil24VitrineBundle:Panier:ajoutArticle, quantite: 1}
+
+_removeArticle:
+    path:     /remove/{idArticle}
+    defaults: { _controller: sil24VitrineBundle:Panier:removeArticle}
+
+_viderPanier:
+    path:     /viderPanier
+    defaults: { _controller: sil24VitrineBundle:Panier:viderPanier}
+
+_validerPanier:
+    path:     /validerPanier
+    defaults: { _controller: sil24VitrineBundle:Panier:validationPanier}
+
+_confirmation:
+    path:     /confirmation/{idCommande}
+    defaults: { _controller: sil24VitrineBundle:Commande:confirmation, idCommande: 1}
+
+_commandes:
+    path:     /mesCommandes/{client}
+    defaults: { _controller: sil24VitrineBundle:Commande:commandes}
+
+_commande:
+    path:     /commande/{commande}
+    defaults: { _controller: sil24VitrineBundle:Commande:commande}
+
+_article:
+    path:     /article/{article}
+    defaults: { _controller: sil24VitrineBundle:Article:ficheArticle, article: 1}
+
+_choix_login:
+    path:     /choix
+    defaults: { _controller: sil24VitrineBundle:Security:choix}
+
+_monCompte:
+    path:     /compte
+    defaults: { _controller: sil24VitrineBundle:Client:monCompte}
+
+# CRUD
+sil24VitrineBundle_commande:
+    resource: "@sil24VitrineBundle/Resources/config/routing/commande.yml"
+    prefix: /commandes
+
+sil24VitrineBundle_client:
+    resource: "@sil24VitrineBundle/Resources/config/routing/client.yml"
+    prefix: /clients
+
+sil24VitrineBundle_categorie:
+    resource: "@sil24VitrineBundle/Resources/config/routing/categorie.yml"
+    prefix: /categories
+
+sil24VitrineBundle_article:
+    resource: "@sil24VitrineBundle/Resources/config/routing/article.yml"
+    prefix: /articles
+

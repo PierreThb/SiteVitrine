@@ -1,0 +1,11 @@
+{% extends "sil24VitrineBundle::layout.html.twig" %}
+
+{% block body %}
+
+    <div style="text-align: center; padding-top: 5%">
+        <a href="{{ path('login') }}" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Se connecter</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="{{ path('client_new') }}" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Créer un compte</a>
+    </div>
+
+{% endblock %}

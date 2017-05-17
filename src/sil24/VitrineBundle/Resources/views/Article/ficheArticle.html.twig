@@ -1,0 +1,46 @@
+{% extends "sil24VitrineBundle::layout.html.twig" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col s12 m7">
+            <div class="card">
+                <div class="card-image">
+                    <img class="materialboxed" src="{{ asset('bundles/sil24vitrine/img/'~article.picture.getNom() ) }}" alt="image du jeu" >
+                    {# si il y a du stock #}
+                    {% if(article.getStock() > 0) %}
+                        {# si le panier contient des articles #}
+                        {% if(contenu) %}
+                            {# si l'article est dans le panier#}
+                            {% if(contenu[article.getId()] is defined) %}
+                                {# si (quantité article dans le panier + 1) > quantité en stock #}
+                                {# alors pas possible d'ajouter au panier, bouton disabled #}
+                                {% if( (contenu[article.getId()] + 1) > article.getStock())  %}
+                                    <a class="btn-floating btn-large halfway-fab waves-effect waves-light red disabled" href={{ path('_ajoutArticle',{'idArticle':article.getId()}) }}><i class="material-icons">add</i></a>
+                                    {# sinon, tous va bien ajout possible #}
+                                {% else %}
+                                    <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href={{ path('_ajoutArticle',{'idArticle':article.getId()}) }}><i class="material-icons">add</i></a>
+                                {% endif %}
+                            {# si l'article n'est pas dans le panier, ajout possible #}
+                            {% else %}
+                                <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href={{ path('_ajoutArticle',{'idArticle':article.getId()}) }}><i class="material-icons">add</i></a>
+                            {% endif %}
+                        {# si aucun contenu dans le panier, tous va bien ajout possible #}
+                        {% else %}
+                            <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" href={{ path('_ajoutArticle',{'idArticle':article.getId()}) }}><i class="material-icons">add</i></a>
+                        {% endif %}
+                    {# sinon si pas de stock, bouton disabled #}
+                    {% else %}
+                        <a class="btn-floating btn-large halfway-fab waves-effect waves-light red disabled" href={{ path('_ajoutArticle',{'idArticle':article.getId()}) }}><i class="material-icons">add</i></a>
+                    {% endif %}
+
+                </div>
+                <div style="border-top: 1px solid #8c8c8c " class="card-content">
+                    <span class="card-title">{{ article.getNom() }}</span>
+                    {#<p>{{ article.getDescription() }}</p>#}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

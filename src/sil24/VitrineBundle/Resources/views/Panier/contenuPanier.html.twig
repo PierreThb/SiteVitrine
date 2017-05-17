@@ -1,0 +1,41 @@
+{% extends "sil24VitrineBundle::layout.html.twig" %}
+{% block body %}
+    {% if(articles) %}
+        &nbsp;
+        <table id="tblArticles" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Articles</th>
+                <th>Qantité</th>
+                <th>Total</th>
+                <th>Supprimer</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.getNom() }}</td>
+                    <td>{{ contenu[article.getId()] }}</td>
+                    <td>{{ contenu[article.getId()] * article.getPrix() }}&nbsp;€</td>
+                    <td>
+                        <a href="{{ path('_removeArticle',{'idArticle':article.getId()}) }}" onclick="return confirm('Supprimer le produit ?')">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <h4 style="text-transform: uppercase; text-align: right">total à régler:&nbsp;&nbsp;{{ total }}&nbsp;€</h4>
+{#
+        <a style="float: left" class="waves-effect waves-light btn" href={{ path('_catalogue') }} >Continuer vos achats</a>
+#}
+        <a  class="waves-effect waves-light btn" href="{{ path('_viderPanier') }}" onclick="return confirm('Voulez-vous vraiment vider votre panier ?')"><i class="material-icons left">delete</i>Vider panier</a>
+        <a  class="waves-effect waves-light btn" href="{{ path('_validerPanier') }}" onclick="return confirm('Confirmer la commande ?')"><i class="material-icons left">done_all</i>Valider panier</a>
+    {% else %}
+        <div class="flash-notice">
+            <h2>OUUUUPS !</h2>
+            <p>Je confirme ce panier est vide ! ...</p>
+        </div>
+    {% endif %}
+{% endblock %}

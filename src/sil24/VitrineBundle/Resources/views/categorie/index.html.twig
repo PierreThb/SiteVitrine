@@ -1,0 +1,41 @@
+{% extends "sil24VitrineBundle::layout.html.twig" %}
+
+{% block body %}
+    <h1>Categories</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie in categories %}
+            <tr>
+                <td><a href="{{ path('categorie_show', { 'id': categorie.id }) }}">{{ categorie.id }}</a></td>
+                <td>{{ categorie.name }}</td>
+                <td>{{ categorie.description }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('categorie_show', { 'id': categorie.id }) }}">Voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('categorie_edit', { 'id': categorie.id }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('categorie_new') }}">Nouvelle catégorie</a>
+        </li>
+    </ul>
+{% endblock %}

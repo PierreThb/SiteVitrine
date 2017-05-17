@@ -1,0 +1,28 @@
+{% extends "sil24VitrineBundle::layout.html.twig" %}
+
+{% block body %}
+    <h1>Commande</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Identifiant commande</th>
+                <td>{{ commande.id }}</td>
+            </tr>
+            <tr>
+                <th>Date de commande</th>
+                <td>{{ commande.dateCommande }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ commande.etattxt }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('_commandes',{'client':app.user.getId()}) }}">Retour</a>
+        </li>
+    </ul>
+{% endblock %}

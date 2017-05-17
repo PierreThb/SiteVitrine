@@ -1,0 +1,32 @@
+{% extends "sil24VitrineBundle::layout.html.twig" %}
+
+{% block body %}
+    <h4>Votre commande n° {{ commande.getId() }} à bien été enregistrée !</h4>
+    <h5>Un mail de confirmation à été envoyé à l'adresse <b>{{ app.user.getEmail() }}</b></h5>
+
+    <h5>Récapitulatif:</h5>
+    <table class="bordered">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ligne in lignes %}
+            <tr>
+                <td>{{ ligne.getArticle().getNom() }}</td>
+                <td>{{ ligne.getArticle().getPrix() }}&nbsp;€</td>
+                <td>{{ articles[ligne.getArticle().getId()] }}</td>
+                <td>{{ (ligne.getArticle().getPrix()) * (articles[ligne.getArticle().getId()]) }}&nbsp;€</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h5 style="text-transform: uppercase; text-align: right">total réglé:&nbsp;&nbsp;{{ total }}&nbsp;€</h5>
+
+
+    <p><a href={{ path('_sil24_vitrine_homepage') }}>Ok</a></p>
+{% endblock %}

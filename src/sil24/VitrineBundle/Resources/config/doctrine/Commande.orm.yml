@@ -1,0 +1,29 @@
+sil24\VitrineBundle\Entity\Commande:
+  type: entity
+  repositoryClass: sil24\VitrineBundle\Entity\CommandeRepository
+  table: commande
+  id:
+      id:
+          type: integer
+          generator: {strategy: AUTO}
+  fields:
+      dateCommande:
+          type: string
+          column: date_commande
+      etat_txt:
+          type: string
+          column: etat_commande_txt
+      etat_cd:
+          type: integer
+          column: etat_commande_cd
+  manyToOne:
+      client:
+          targetEntity: Client
+          inversedBy: commandes
+          joinColumn:
+             name: client_id
+             referencedColumnName: id
+  oneToMany:
+      lignesDeCommande:
+          targetEntity: LigneDeCommande
+          mappedBy: commande

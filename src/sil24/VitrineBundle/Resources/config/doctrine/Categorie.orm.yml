@@ -1,0 +1,18 @@
+sil24\VitrineBundle\Entity\Categorie:
+  type: entity
+  table: categorie_article
+  id:
+      id:
+          type: integer
+          generator: {strategy: AUTO}
+  fields:
+      name:
+          type: string
+          length: 100
+      description:
+          type: text
+          nullable: true
+  oneToMany:
+      articles:
+          targetEntity: Article
+          mappedBy: categorie

@@ -1,0 +1,18 @@
+sil24\VitrineBundle\Entity\Picture:
+  type: entity
+  table: picture
+  id:
+      id:
+          type: integer
+          generator: {strategy: AUTO}
+  fields:
+      nom:
+          type: string
+          length: 100
+  oneToOne:
+      article:
+          targetEntity: Article
+          inversedBy: picture
+          joinColumn:
+              name: article_id
+              referencedColumnName: id

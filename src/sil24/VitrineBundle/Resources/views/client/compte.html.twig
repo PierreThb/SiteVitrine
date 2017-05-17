@@ -1,0 +1,12 @@
+{% extends "sil24VitrineBundle::layout.html.twig" %}
+
+{% block body %}
+    <h5>Informations du compte</h5>
+    &nbsp;
+    &nbsp;
+    <p><i class="small material-icons">perm_identity</i>&nbsp;&nbsp;&nbsp;&nbsp;{{  client.getName() }}</p>
+    <p><i class="small material-icons">email</i>&nbsp;&nbsp;&nbsp;&nbsp;{{  client.getEmail() }}</p>
+    <p><i class="small material-icons">vpn_key</i>&nbsp;&nbsp;&nbsp;&nbsp;Votre mot de passe...</p>
+
+
+{% endblock %}

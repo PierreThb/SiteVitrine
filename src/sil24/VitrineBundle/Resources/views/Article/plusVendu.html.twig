@@ -1,0 +1,6 @@
+
+<div class="collection">
+    {% for article in articles %}
+        <a href="{{ path('_article',{'article':article.getId()})}}" class="collection-item">{{ article.getNom() }}</a>
+    {% endfor %}
+</div>

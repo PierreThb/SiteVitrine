@@ -1,0 +1,59 @@
+{% extends "sil24VitrineBundle::layout.html.twig" %}
+
+{% block body %}
+    <h3>{{ categorie.getName() }}</h3>
+
+    {% for article in articles %}
+        <div class="card small horizontal">
+            <div class="card-image">
+                <img src="{{ asset('bundles/sil24vitrine/img/'~article.picture.getNom() ) }}">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <p>{{ article.getDescription() }}</p>
+                </div>
+                <div class="card-action">
+                    <ul>
+                        <li>
+                            <ul>
+                                <li>
+                                    <h5 style="text-transform: uppercase; color: #d58512">{{ article.getNom() }}</h5>
+                                    {# si il y a du stock #}
+                                    {% if(article.getStock() > 0) %}
+                                        {# si le panier contient des articles #}
+                                        {% if(contenu) %}
+                                            {# si l'article est dans le panier#}
+                                            {% if(contenu[article.getId()] is defined) %}
+                                                {# si (quantité article dans le panier + 1) > quantité en stock #}
+                                                {# alors pas possible d'ajouter au panier, bouton disabled #}
+                                                {% if( (contenu[article.getId()] + 1) > article.getStock())  %}
+                                                    <a href="{{ path('_ajoutArticle',{'idArticle':article.getId()}) }}" style="float: right" class="waves-effect waves-teal btn disabled"><i class="material-icons">add</i></a>
+                                                {# sinon, tous va bien ajout possible #}
+                                                {% else %}
+                                                    <a href="{{ path('_ajoutArticle',{'idArticle':article.getId()}) }}" style="float: right" class="waves-effect waves-teal btn"><i class="material-icons">add</i></a>
+                                                {% endif %}
+                                            {# si l'article n'est pas dans le panier, ajout possible #}
+                                            {% else %}
+                                                <a href="{{ path('_ajoutArticle',{'idArticle':article.getId()}) }}" style="float: right" class="waves-effect waves-teal btn"><i class="material-icons">add</i></a>
+                                            {% endif %}
+                                        {# si aucun contenu dans le panier, tous va bien ajout possible #}
+                                        {% else %}
+                                            <a href="{{ path('_ajoutArticle',{'idArticle':article.getId()}) }}" style="float: right" class="waves-effect waves-teal btn"><i class="material-icons">add</i></a>
+                                        {% endif %}
+                                    {# sinon si pas de stock, bouton disabled #}
+                                    {% else %}
+                                        <a href="{{ path('_ajoutArticle',{'idArticle':article.getId()}) }}" style="float: right" class="waves-effect waves-teal btn disabled"><i class="material-icons">add</i></a>
+                                    {% endif %}
+                                </li>
+                                <li>
+                                    <h5>{{ article.getPrix() }} €</h5>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

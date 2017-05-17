@@ -1,0 +1,7 @@
+sil24_vitrine:
+    resource: "@sil24VitrineBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

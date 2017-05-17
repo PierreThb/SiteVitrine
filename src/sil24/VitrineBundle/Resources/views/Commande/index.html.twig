@@ -1,0 +1,31 @@
+{% extends "sil24VitrineBundle::layout.html.twig" %}
+
+{% block body %}
+    {% if commandes == null %}
+        <h4>Vous n'avez aucune commandes</h4>
+        <a class="waves-effect waves-light btn" href="{{ path('_catalogue') }}"><i class="material-icons left">done_all</i>Accéder au catalogue</a>
+    {% else %}
+        <h1>Vos commandes</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date de commande</th>
+                <th>Etat</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for commande in commandes %}
+                <tr>
+                    <td><a href="{{ path('commande_show', { 'id': commande.id }) }}">{{ commande.id }}</a></td>
+                    <td>{{ commande.dateCommande }}</td>
+                    <td>{{ commande.etattxt }}</td>
+                    <td><a href="{{ path('_commande', { 'commande': commande.id }) }}">Détails</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}

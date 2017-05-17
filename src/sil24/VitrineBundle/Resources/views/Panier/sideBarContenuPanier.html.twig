@@ -1,0 +1,13 @@
+{% if(articles == null) %}
+    <div class="flash-notice">
+        <p>On dirait bien que votre panier est vide...</p>
+    </div>
+    <a class="waves-effect waves-light btn" href="{{ path('_catalogue') }}" style="width: 100%">Voir le Catalogue</a>
+{% else %}
+    <div class="collection">
+        {% for article in articles %}
+            <a href="#!" class="collection-item"><span class="new badge lighten-2" data-badge-caption="">{{ contenu[article.getId()] }}</span>{{ article.getNom() }}</a>
+        {% endfor %}
+    </div>
+    <a class="waves-effect waves-light btn" onclick="return confirm('Confirmer la commande ?')" href={{ path('_validerPanier') }}><i class="material-icons left">done_all</i>Valider panier</a>
+{% endif %}

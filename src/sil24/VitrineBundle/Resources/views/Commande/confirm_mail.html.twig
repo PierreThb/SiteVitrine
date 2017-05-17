@@ -1,0 +1,24 @@
+<h4>Merci pour votre commande n° {{ commande.getId() }}</h4>
+
+<h5>Récapitulatif:</h5>
+<table class="bordered">
+    <thead>
+    <tr>
+        <th>Produit</th>
+        <th>Prix</th>
+        <th>Quantité</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for ligne in lignes %}
+        <tr>
+            <td>{{ ligne.getArticle().getNom() }}</td>
+            <td>{{ ligne.getArticle().getPrix() }}&nbsp;€</td>
+            <td>{{ articles[ligne.getArticle().getId()] }}</td>
+            <td>{{ (ligne.getArticle().getPrix()) * (articles[ligne.getArticle().getId()]) }}&nbsp;€</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<h5 style="text-transform: uppercase; text-align: right">total réglé:&nbsp;&nbsp;{{ total }}&nbsp;€</h5>

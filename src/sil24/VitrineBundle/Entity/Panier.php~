@@ -1,0 +1,111 @@
+<?php
+
+namespace sil24\VitrineBundle\Entity;
+
+/**
+ * Panier
+ */
+class Panier
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $stateTxt;
+
+    /**
+     * @var integer
+     */
+    private $stateCd;
+
+    /**
+     * @var \sil24\VitrineBundle\Entity\Client
+     */
+    private $client;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set client
+     *
+     * @param \sil24\VitrineBundle\Entity\Client $client
+     *
+     * @return Panier
+     */
+    public function setClient(\sil24\VitrineBundle\Entity\Client $client = null)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
+     * @return \sil24\VitrineBundle\Entity\Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * Set stateTxt
+     *
+     * @param string $stateTxt
+     *
+     * @return Panier
+     */
+    public function setStateTxt($stateTxt)
+    {
+        $this->stateTxt = $stateTxt;
+
+        return $this;
+    }
+
+    /**
+     * Get stateTxt
+     *
+     * @return string
+     */
+    public function getStateTxt()
+    {
+        return $this->stateTxt;
+    }
+
+    /**
+     * Set stateCd
+     *
+     * @param integer $stateCd
+     *
+     * @return Panier
+     */
+    public function setStateCd($stateCd)
+    {
+        $this->stateCd = $stateCd;
+
+        return $this;
+    }
+
+    /**
+     * Get stateCd
+     *
+     * @return integer
+     */
+    public function getStateCd()
+    {
+        return $this->stateCd;
+    }
+}
